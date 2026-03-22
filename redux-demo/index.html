@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redux Counter Demo</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    button { margin: 5px; padding: 10px 20px; }
+    #counter { font-size: 2em; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<h1>Redux Counter Demo</h1>
+<div>
+  <button id="increment">Increment</button>
+  <button id="decrement">Decrement</button>
+</div>
+<div id="counter">0</div>
+
+<!-- 正確 UMD 版本 Redux -->
+<script src="https://unpkg.com/redux@4.2.1/dist/redux.min.js"></script>
+<script>
+  // 1️⃣ 初始狀態
+  const initialState = { value: 0 };
+
+  // 2️⃣ 定義 reducer
+  function counterReducer(state = initialState, action) {
+    // 8️⃣ 根據 action 的 type 來更新 state
+    switch(action.type) {
+      case 'counter/increment':
+        // 9️⃣ 回傳新的 state（不可變性）
+        return { ...state, value: state.value + 1 };
+      case 'counter/decrement':
+        return { ...state, value: state.value - 1 };
+      default:
+        return state;
+    }
+  }
+
+  // 3️⃣ 建立 store (直接用 Redux.createStore)
+  // 🔟 狀態管理中心會通知所有有訂閱狀態的元件, 告知他們目前狀態管理中心的狀態有更新
+  // 1️⃣1️⃣ 元件到狀態管理中心檢查自己所需的狀態是否有更新.
+  // 1️⃣2️⃣ 當元件發現自己所需的元件有更新時, 會強制重新渲染畫面, 並顯示最新的資料
+  const store = Redux.createStore(counterReducer);
+
+  // 4️⃣ 訂閱 state 更新
+  // store.subscribe 是 Redux 提供的方法，用來 訂閱（監聽）store 的狀態變化。
+  store.subscribe(() => {
+    // 更新 UI
+    document.getElementById('counter').innerText = store.getState().value;
+  });
+
+  // 5️⃣ 綁定按鈕事件             6️⃣ 在畫面上點擊按鈕
+  document.getElementById('increment').addEventListener('click', () => {
+    // 7️⃣ 發送 action
+    store.dispatch({ type: 'counter/increment' });
+  });
+
+  document.getElementById('decrement').addEventListener('click', () => {
+    store.dispatch({ type: 'counter/decrement' });
+  });
+
+</script>
+</body>
+</html>

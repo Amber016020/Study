@@ -1,5 +1,3 @@
-InlineDataService
-
 # 正規化
 
 # user list ⇒
@@ -166,7 +164,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 }
 ```
 
-👉 不用再手動 parse properties
+👉 不用再手動 parse properties！！！
 
 # swagger 密碼問題 ⇒
 
@@ -267,7 +265,7 @@ private static final String[] SWAGGER_WHITELIST = {
 
 因為目前yaml裡面所有的app的命名方式都是my-api
 
-但我們部門對於lable的命名規則是要以底線連接，所以是my_api
+但我們對於lable的命名規則是要以底線連接，所以是my_api
 
 所以我應該要改那些yaml的欄位才能完成這件事?
 
@@ -326,13 +324,13 @@ kubectl delete deployment my-api
 
 # model
 
-我記得我現在是用toolEventVO、toolEventDO，但其實toolEventVO裡面的欄位跟toolEventDO的欄位是完全重疊的
+我記得我現在是用toolEventVO、toolEventDO，但老闆說這樣其實toolEventVO裡面的欄位跟toolEventDO的欄位是完全重疊的
 
 這支API裡面就查詢一張TABLE
 
 像toolEventVO裡面有8個可以傳入的參數讓sql當條件過濾。DO目前則是把所有TABLE欄位OUTPUT出來
 
-所以這邊可以改進
+所以他說這邊可以改進，但我忘記她說的改進方向是甚麼了，好像是名字可以換新的，或者有更好的做法嗎?他好像講了幾種，幫我分析看看她到底講了甚麼
 
 toolEventVO → 查詢條件（8個欄位）
 
@@ -452,3 +450,11 @@ List<ToolEvent>findByQuery(ToolEventQuery query);
 圖片跟body重弄
 
 # 欄位調整
+
+記得欄位要照著說的拿掉一些不必要的
+
+待問的問題：
+
+relabel_configs 是甚麼?
+
+HPA是甚麼?

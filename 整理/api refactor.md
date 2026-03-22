@@ -1,5 +1,3 @@
-InlineDataService
-
 # 正規化
 
 # user list ⇒

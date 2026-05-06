@@ -450,6 +450,7 @@ List<ToolEvent>findByQuery(ToolEventQuery query);
 圖片跟body重弄
 
 # 欄位調整
+<<<<<<< HEAD
 
 記得欄位要照著說的拿掉一些不必要的
 
@@ -458,3 +459,5 @@ List<ToolEvent>findByQuery(ToolEventQuery query);
 relabel_configs 是甚麼?
 
 HPA是甚麼?
+=======
+>>>>>>> 2e06eae590a90c1bffa3123fa4e3c2c80d6f77f4
